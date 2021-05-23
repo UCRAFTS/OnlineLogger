@@ -1,0 +1,9 @@
+.git
+.idea
+.run
+target
+*.iml
+.DS_Store
+.AppleDouble
+.LSOverride
+._*

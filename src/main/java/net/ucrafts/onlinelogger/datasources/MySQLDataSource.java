@@ -36,7 +36,7 @@ public class MySQLDataSource extends AbstractDataSource implements DataSourceInt
         hikariConfig.setPoolName("OnlineLoggerPool");
         hikariConfig.setJdbcUrl(
                 String.format(
-                        "jdbc:mysql://%s:%s/%s?useSSL=false&verifyServerCertificate=false&autoReconnect=true&serverTimezone=UTC",
+                        "jdbc:mysql://%s:%s/%s?useSSL=false&verifyServerCertificate=false&allowPublicKeyRetrieval=true&autoReconnect=true&serverTimezone=UTC",
                         this.config.getConfig().getString(ConfigType.DB_HOST.getName()),
                         this.config.getConfig().getInt(ConfigType.DB_PORT.getName()),
                         this.config.getConfig().getString(ConfigType.DB_BASE.getName())

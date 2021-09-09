@@ -2,8 +2,7 @@ package net.ucrafts.onlinelogger.types;
 
 import org.jetbrains.annotations.NotNull;
 
-public enum ConfigType
-{
+public enum ConfigType {
 
     DB_HOST("db.host"),
     DB_PORT("db.port"),
@@ -23,13 +22,11 @@ public enum ConfigType
 
     private final String name;
 
-    ConfigType(@NotNull final String name)
-    {
+    ConfigType(@NotNull final String name) {
         this.name = name;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 }

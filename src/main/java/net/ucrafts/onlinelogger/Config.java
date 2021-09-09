@@ -8,14 +8,12 @@ import net.ucrafts.onlinelogger.types.ConfigType;
 
 import java.nio.file.Path;
 
-public class Config
-{
+public class Config {
 
     private final FlatFile config;
 
     @Inject
-    public Config(@DataDirectory Path dataDirectory)
-    {
+    public Config(@DataDirectory Path dataDirectory) {
         this.config = new Json("config", dataDirectory.toString());
         this.config.setDefault(ConfigType.DB_HOST.getName(), "127.0.0.1");
         this.config.setDefault(ConfigType.DB_PORT.getName(), 3306);
@@ -34,8 +32,7 @@ public class Config
         this.config.setDefault(ConfigType.UPDATE_PERIOD.getName(), 1);
     }
 
-    public FlatFile getConfig()
-    {
+    public FlatFile getConfig() {
         return this.config;
     }
 }

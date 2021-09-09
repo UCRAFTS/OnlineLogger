@@ -1,7 +1,5 @@
 package net.ucrafts.onlinelogger.managers;
 
-import de.leonhard.storage.shaded.json.JSONObject;
-import jdk.nashorn.internal.parser.JSONParser;
 import net.ucrafts.onlinelogger.Config;
 import net.ucrafts.onlinelogger.datasources.AbstractDataSource;
 import net.ucrafts.onlinelogger.types.ConfigType;
@@ -11,29 +9,24 @@ import redis.clients.jedis.JedisPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.Map;
 import java.util.Set;
 
-public class OnlineManager
-{
+public class OnlineManager {
 
-    private Config config;
     private final AbstractDataSource dataSource;
     private final JedisPool jedis;
     private final Logger logger;
+    private final Config config;
 
-    public OnlineManager(Config config, AbstractDataSource dataSource, JedisPool jedis, Logger logger)
-    {
+    public OnlineManager(Config config, AbstractDataSource dataSource, JedisPool jedis, Logger logger) {
         this.config = config;
         this.dataSource = dataSource;
         this.jedis = jedis;
         this.logger = logger;
     }
 
-    public void save(String proxyName, String serverName, int serverOnline)
-    {
+    public void save(String proxyName, String serverName, int serverOnline) {
         try (Connection connection = this.dataSource.getConnection()) {
             String query = "INSERT INTO %s_servers VALUES(NULL, ?, ?, ?, NOW())";
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -54,8 +47,7 @@ public class OnlineManager
         }
     }
 
-    public int getAllOnline()
-    {
+    public int getAllOnline() {
         int online = 0;
 
         try {

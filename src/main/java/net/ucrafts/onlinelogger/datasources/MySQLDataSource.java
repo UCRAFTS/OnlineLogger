@@ -11,15 +11,13 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class MySQLDataSource extends AbstractDataSource implements DataSourceInterface
-{
+public class MySQLDataSource extends AbstractDataSource implements DataSourceInterface {
 
-    protected String driverClassName = "com.mysql.cj.jdbc.Driver";
     private final Logger logger;
+    protected String driverClassName = "com.mysql.cj.jdbc.Driver";
 
     @Inject
-    public MySQLDataSource(Config config, Logger logger)
-    {
+    public MySQLDataSource(Config config, Logger logger) {
         super(config);
 
         this.logger = logger;
@@ -52,13 +50,11 @@ public class MySQLDataSource extends AbstractDataSource implements DataSourceInt
     }
 
     @Override
-    public void createTables()
-    {
+    public void createTables() {
         this.createServerOnlineTable();
     }
 
-    private void createServerOnlineTable()
-    {
+    private void createServerOnlineTable() {
         String query = "create table if not exists %s_servers (id int not null auto_increment primary key, proxy varchar(255) not null, server varchar(255) not null, online int not null, created_at datetime not null);";
 
         try (Connection connection = this.getConnection()) {

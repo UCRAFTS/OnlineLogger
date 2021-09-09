@@ -6,23 +6,20 @@ import net.ucrafts.onlinelogger.Config;
 import net.ucrafts.onlinelogger.managers.OnlineManager;
 import net.ucrafts.onlinelogger.types.ConfigType;
 
-public class SaveOnlineTask implements Runnable
-{
+public class SaveOnlineTask implements Runnable {
 
-    private Config config;
     private final OnlineManager manager;
     private final ProxyServer server;
+    private final Config config;
 
-    public SaveOnlineTask(Config config, OnlineManager manager, ProxyServer server)
-    {
+    public SaveOnlineTask(Config config, OnlineManager manager, ProxyServer server) {
         this.config = config;
         this.manager = manager;
         this.server = server;
     }
 
     @Override
-    public void run()
-    {
+    public void run() {
         for (RegisteredServer server : this.server.getAllServers()) {
             String serverName = server.getServerInfo().getName();
             String proxyName = this.config.getConfig().getString(ConfigType.PROXY_NAME.getName());

@@ -31,8 +31,7 @@ import java.util.concurrent.TimeUnit;
                 "Alexander Repin / oDD1"
         }
 )
-public class OnlineLoggerPlugin
-{
+public class OnlineLoggerPlugin {
 
     private final ProxyServer server;
     private final AbstractDataSource dataSource;
@@ -40,11 +39,10 @@ public class OnlineLoggerPlugin
     private final OnlineManager manager;
     private final Logger logger;
     private final HashSet<ScheduledTask> tasks = new HashSet<>();
-    private Config config;
+    private final Config config;
 
     @Inject
-    public OnlineLoggerPlugin(ProxyServer server, Config config, Logger logger)
-    {
+    public OnlineLoggerPlugin(ProxyServer server, Config config, Logger logger) {
         this.server = server;
         this.config = config;
         this.logger = logger;
@@ -66,8 +64,7 @@ public class OnlineLoggerPlugin
     }
 
     @Subscribe
-    public void onProxyInitialize(ProxyInitializeEvent e)
-    {
+    public void onProxyInitialize(ProxyInitializeEvent e) {
         this.server.getEventManager().register(this, new ProxyPingListener(this.manager));
         this.tasks.add(
                 this.server.getScheduler()
@@ -78,8 +75,7 @@ public class OnlineLoggerPlugin
     }
 
     @Subscribe
-    public void onProxyShutdown(ProxyShutdownEvent e)
-    {
+    public void onProxyShutdown(ProxyShutdownEvent e) {
         for (RegisteredServer server : this.server.getAllServers()) {
             String serverName = server.getServerInfo().getName();
             String proxyName = this.config.getConfig().getString(ConfigType.PROXY_NAME.getName());
